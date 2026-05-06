@@ -9,13 +9,13 @@ let app = express()
 let server = http.createServer(app);
 let io = new Server(server, {
      cors:{
-        origin: ["https://cowork-frontend-gray.vercel.app/"],
+        origin: ["https://cowork-frontend-gray.vercel.app"],
         methods: ["GET", "POST"]
     }
 });
 
 app.use(cors({
-    origin: 'https://cowork-frontend-gray.vercel.app/',
+    origin: 'https://cowork-frontend-gray.vercel.app',
     credentials: true
 }))
 
