@@ -1,3 +1,4 @@
+require('dotenv').config()
 let express = require('express');
 let user = require('../Model/user')
 let jwt = require('jsonwebtoken')
@@ -12,7 +13,7 @@ let maxAge = days * hours * minutes * seconds; //time for the jwt token to expir
 //jwt token function
 let createToken = (id)=>{
 
-    return jwt.sign({id: id}, 'SECRET', {
+    return jwt.sign({id: id}, process.env.JWT_SECRET, {
 
 	    expiresIn: maxAge
 
