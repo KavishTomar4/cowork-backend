@@ -54,7 +54,7 @@ io.on('disconnect', ()=>{
 //checking connection
 con.on('open', ()=>{
 
-    server.listen(process.env.PORT || 5000, '0.0.0.0', ()=> console.log('Connected Successfully'))
+    server.listen(process.env.PORT || 4000, '0.0.0.0', ()=> console.log('Connected Successfully'))
     
 
 });
