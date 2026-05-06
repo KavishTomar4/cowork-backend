@@ -1,3 +1,4 @@
+require('dotenv').config()
 let http = require('http')
 let express = require('express')
 let mainRoutes = require('./Routes/mainRoutes')
@@ -26,7 +27,7 @@ app.use('/api', mainRoutes)
 
 
 //connection to mongodb database called cowork
-mongoose.connect('mongodb://mongo:FMDAvMVZSdRHHSQsNewDeTbOtMYvjrEp@trolley.proxy.rlwy.net:31474')
+mongoose.connect(process.env.MONOG_URI)
 let con = mongoose.connection
 
 //
@@ -53,7 +54,7 @@ io.on('disconnect', ()=>{
 //checking connection
 con.on('open', ()=>{
 
-    server.listen(5000, ()=> console.log('Connected Successfully'))
+    server.listen(process.env.PORT || 5000, ()=> console.log('Connected Successfully'))
     
 
 });
