@@ -40,7 +40,7 @@ routes.post('/register', async(req, res)=>{
     try{
         let a1 = await u.save();
         let token = createToken(a1._id);
-	    res.cookie('cowork', token, {httpOnly: true, maxAge : maxAge * 1000})
+	    res.cookie('cowork', token, {httpOnly: true, secure:true, sameSite: 'None', maxAge : maxAge * 1000})
         res.json({toLink: '/', username: a1.username})
 
     }catch(err){
@@ -81,7 +81,7 @@ routes.post('/login', async(req, res)=>{
         if(u){
             
             let t = createToken(u._id);
-            res.cookie('cowork', t, {httpOnly: true, maxAge: maxAge })
+            res.cookie('cowork', t, {httpOnly: true, secure:true, sameSite: 'None',maxAge: maxAge })
             return res.json({toLink: '/dashboard', username: u.username});
             
         }else{
