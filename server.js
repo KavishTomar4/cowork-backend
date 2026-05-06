@@ -9,10 +9,15 @@ let app = express()
 let server = http.createServer(app);
 let io = new Server(server, {
      cors:{
-        origin: ["http://localhost:3000", "http://127.0.0.1:3000"],
+        origin: ["https://cowork-frontend-gray.vercel.app/"],
         methods: ["GET", "POST"]
     }
 });
+
+app.use(cors({
+    origin: 'https://cowork-frontend-gray.vercel.app/',
+    credentials: true
+}))
 
 
 //to parse json
