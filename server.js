@@ -10,7 +10,7 @@ let app = express()
 let server = http.createServer(app);
 
 let corsOptions = {
-    origin: 'https://cowork-frontend-gray.vercel.app',
+    origin: 'https://cowork-frontend-production.up.railway.app/',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']

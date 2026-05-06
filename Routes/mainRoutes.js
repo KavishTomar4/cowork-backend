@@ -82,7 +82,7 @@ routes.post('/login', async(req, res)=>{
             
             let t = createToken(u._id);
             res.cookie('cowork', t, {httpOnly: true, maxAge: maxAge })
-            res.json({toLink: '/dashboard', username: u.username});
+            return res.json({toLink: '/dashboard', username: u.username});
             
         }else{
 
