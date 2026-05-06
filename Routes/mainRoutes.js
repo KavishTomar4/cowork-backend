@@ -82,7 +82,7 @@ routes.post('/login', async(req, res)=>{
         if(u){
             
             let t = createToken(u._id);
-            res.cookie('cowork', t, {httpOnly: true, secure:true, sameSite: 'None',maxAge: maxAge, domain: '.railway.app' })
+            res.cookie('cowork', t, {httpOnly: true, secure:true, sameSite: 'None',maxAge: maxAge*1000, domain: '.railway.app' })
             return res.json({toLink: '/dashboard', username: u.username});
             
         }else{
