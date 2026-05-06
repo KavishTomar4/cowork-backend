@@ -65,7 +65,7 @@ routes.post('/login', async(req, res)=>{
     //verifying here with the availability of token
     if(token){
 
-        jwt.verify(token, 'SECRET', (err, tokenDecoded)=>{
+        jwt.verify(token, process.env.JWT_SECRET, (err, tokenDecoded)=>{
 
             if(err){
                 console.log(err)
@@ -105,7 +105,7 @@ routes.get('/getlogin', (req, res)=>{
 
     if(!token) return res.json({ toLink: '/' }) 
 
-    jwt.verify(token, 'SECRET', async(err, tokenDecoded) => {
+    jwt.verify(token, process.env.JWT_SECRET, async(err, tokenDecoded) => {
         if(err) return res.json({ toLink: '/' })
         let u = await user.findById(tokenDecoded.id)  
         return res.json({ toLink: '/dashboard', username: u.username})      
@@ -123,7 +123,7 @@ routes.post('/createproject', async(req, res) => {
     //verifying here with the availability of token
     if(token){
 
-        jwt.verify(token, 'SECRET', async(err, tokenDecoded)=>{
+        jwt.verify(token, process.env.JWT_SECRET, async(err, tokenDecoded)=>{
 
             if(err){
                 console.log(err)
@@ -158,7 +158,7 @@ routes.post('/joinproject', (req, res) => {
     if(!token) return res.json({ error: 'Not authenticated' })
         
     
-    jwt.verify(token, 'SECRET', async(err, tokenDecoded) => {
+    jwt.verify(token, process.env.JWT_SECRET, async(err, tokenDecoded) => {
         if(err) return res.json({ error: 'Invalid token' }) 
 
         let u = await user.findById(tokenDecoded.id);
@@ -199,7 +199,7 @@ routes.get('/getproject', (req, res)=>{
 
     if(!token) return res.json({ toLink: '/' }) 
     let projects_temp = [];
-    jwt.verify(token, 'SECRET', async(err, tokenDecoded) => {
+    jwt.verify(token, process.env.JWT_SECRET, async(err, tokenDecoded) => {
         if(err) return res.json({ toLink: '/' })
         let u = await user.findById(tokenDecoded.id)  
         for(let i = 0; i < u.projects.length; i++){
