@@ -27,7 +27,7 @@ app.use('/api', mainRoutes)
 
 
 //connection to mongodb database called cowork
-mongoose.connect(process.env.MONOG_URI)
+mongoose.connect(process.env.MONGO_URI)
 let con = mongoose.connection
 
 //
