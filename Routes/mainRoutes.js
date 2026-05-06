@@ -222,7 +222,13 @@ routes.get('/getproject', (req, res)=>{
 
 routes.get('/logout', (req, res)=>{
 
-    res.cookie('cowork', '', {maxAge : 1})
+   res.cookie('cowork', '', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'None',
+    maxAge: 1,
+    domain: '.railway.app' 
+})
 
     return res.json({toLink: '/'})
 
