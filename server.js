@@ -8,17 +8,20 @@ let cookieParser = require('cookie-parser');
 let {Server} = require('socket.io')
 let app = express()
 let server = http.createServer(app);
-let io = new Server(server, {
-     cors:{
-        origin: ["https://cowork-frontend-gray.vercel.app"],
-        methods: ["GET", "POST"]
-    }
-});
 
-app.use(cors({
+let corsOptions = {
     origin: 'https://cowork-frontend-gray.vercel.app',
-    credentials: true
-}))
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}
+
+
+app.use(cors(corsOptions))
+
+let io = new Server(server, {
+    cors: corsOptions
+});
 
 
 //to parse json
