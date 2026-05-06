@@ -1,5 +1,6 @@
 require('dotenv').config()
 let http = require('http')
+let cors = require('cors')
 let express = require('express')
 let mainRoutes = require('./Routes/mainRoutes')
 let mongoose = require('mongoose')
