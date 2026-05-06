@@ -41,7 +41,7 @@ routes.post('/register', async(req, res)=>{
     try{
         let a1 = await u.save();
         let token = createToken(a1._id);
-	    res.cookie('cowork', token, {httpOnly: true, secure:true, sameSite: 'None', maxAge : maxAge * 1000})
+	    res.cookie('cowork', token, {httpOnly: true, secure:true, sameSite: 'None', maxAge : maxAge * 1000, domain: '.railway.app'})
         res.json({toLink: '/', username: a1.username})
 
     }catch(err){
@@ -71,7 +71,7 @@ routes.post('/login', async(req, res)=>{
                 console.log(err)
                 return res.json({toLink: '/'})
             }else{
-                return res.json({toLink: '/dashboard/yourproject'})
+                return res.json({toLink: '/dashboard'})
             }
 
         })
@@ -82,7 +82,7 @@ routes.post('/login', async(req, res)=>{
         if(u){
             
             let t = createToken(u._id);
-            res.cookie('cowork', t, {httpOnly: true, secure:true, sameSite: 'None',maxAge: maxAge })
+            res.cookie('cowork', t, {httpOnly: true, secure:true, sameSite: 'None',maxAge: maxAge, domain: '.railway.app' })
             return res.json({toLink: '/dashboard', username: u.username});
             
         }else{
